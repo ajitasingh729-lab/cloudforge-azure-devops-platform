@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudforge-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloudforge-nginx
+  template:
+    metadata:
+      labels:
+        app: cloudforge-nginx
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:alpine
+        ports:
+        - containerPort: 80

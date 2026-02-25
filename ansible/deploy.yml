@@ -1,0 +1,19 @@
+---
+- name: Deploy CloudForge using Docker
+  hosts: local
+  become: false
+
+  tasks:
+
+    - name: Pull Docker image
+      docker_image:
+        name: ajtasingh/cloudforge-app:latest
+        source: pull
+
+    - name: Run CloudForge container
+      docker_container:
+        name: cloudforge-ansible
+        image: ajtasingh/cloudforge-app:latest
+        state: started
+        ports:
+          - "8090:5000"
